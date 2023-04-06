@@ -1,0 +1,398 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "z001_srv_metadata": {
+      "kind": "service",
+      "@cds.external": true,
+      "@m.IsDefaultEntityContainer": "true",
+      "@sap.supported.formats": "atom json xlsx"
+    },
+    "z001_srv_metadata.SEPM_I_SalesOrderItem_E": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.semantics": "aggregate",
+      "@sap.label": "EPM Demo: Sales Order Item with External IDs",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.LargeString",
+          "@sap.sortable": "false",
+          "@sap.filterable": "false",
+          "notNull": true
+        },
+        "SalesOrder": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Sales Order ID",
+          "@sap.quickinfo": "EPM: Sales Order Number",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "SalesOrderItem": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "SalesOrderItem_Text",
+          "@sap.label": "Item Position",
+          "@sap.quickinfo": "EPM: Sales Order Item Position",
+          "notNull": false
+        },
+        "SalesOrderItem_Text": {
+          "type": "cds.String",
+          "length": 255,
+          "@sap.label": "Description",
+          "@sap.quickinfo": "EPM: Text field for names and descriptions",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "Product": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Product ID",
+          "@sap.quickinfo": "EPM: Product ID",
+          "notNull": false
+        },
+        "TransactionCurrency": {
+          "type": "cds.String",
+          "length": 5,
+          "@sap.aggregation.role": "dimension",
+          "@sap.label": "Currency Code",
+          "@sap.quickinfo": "EPM: Currency Code",
+          "@sap.semantics": "currency-code",
+          "notNull": false
+        },
+        "GrossAmountInTransacCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Gross Amount",
+          "@sap.quickinfo": "EPM: Total Gross Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "NetAmountInTransactionCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Net Amount",
+          "@sap.quickinfo": "EPM: Total Net Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "TaxAmountInTransactionCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Tax Amount",
+          "@sap.quickinfo": "EPM: Total Tax Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "ProductAvailabilityStatus": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "ATP Status",
+          "@sap.quickinfo": "EPM: Sales Order Item ATP Status",
+          "notNull": false
+        },
+        "OpportunityItem": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Item Position",
+          "@sap.quickinfo": "EPM: Sales Order Item Position",
+          "notNull": false
+        }
+      }
+    },
+    "z001_srv_metadata.SEPM_I_SalesOrder_E": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "@sap.creatable": "false",
+      "@sap.updatable": "false",
+      "@sap.deletable": "false",
+      "@sap.content.version": "1",
+      "@sap.semantics": "aggregate",
+      "@sap.label": "EPM Demo: Sales Order with External IDs",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.LargeString",
+          "@sap.sortable": "false",
+          "@sap.filterable": "false",
+          "notNull": true
+        },
+        "SalesOrder": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.text": "SalesOrder_Text",
+          "@sap.label": "Sales Order ID",
+          "@sap.quickinfo": "EPM: Sales Order Number",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "SalesOrder_Text": {
+          "type": "cds.String",
+          "length": 255,
+          "@sap.label": "Description",
+          "@sap.quickinfo": "EPM: Text field for names and descriptions",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 12,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Created By",
+          "@sap.quickinfo": "EPM: Created By User",
+          "notNull": false
+        },
+        "CreationDateTime": {
+          "type": "cds.Timestamp",
+          "@odata.Type": "Edm.DateTimeOffset",
+          "@odata.Precision": 7,
+          "@sap.aggregation.role": "dimension",
+          "@sap.label": "Created At",
+          "@sap.quickinfo": "EPM: Created At",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Last Changed By",
+          "@sap.quickinfo": "EPM: Last Changed By User",
+          "notNull": false
+        },
+        "LastChangedDateTime": {
+          "type": "cds.Timestamp",
+          "@odata.Type": "Edm.DateTimeOffset",
+          "@odata.Precision": 7,
+          "@sap.aggregation.role": "dimension",
+          "@sap.label": "Changed At",
+          "@sap.quickinfo": "EPM: Changed At",
+          "@sap.creatable": "false",
+          "@sap.updatable": "false",
+          "notNull": false
+        },
+        "IsCreatedByBusinessPartner": {
+          "type": "cds.Boolean",
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Value",
+          "@sap.quickinfo": "EPM: Boolean",
+          "notNull": false
+        },
+        "IsLastChangedByBusinessPartner": {
+          "type": "cds.Boolean",
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Value",
+          "@sap.quickinfo": "EPM: Boolean",
+          "notNull": false
+        },
+        "Customer": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Customer",
+          "@sap.quickinfo": "EPM: Customer ID",
+          "notNull": false
+        },
+        "CustomerContact": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Customer Contact",
+          "@sap.quickinfo": "EPM: Sales Order Customer Contact",
+          "notNull": false
+        },
+        "TransactionCurrency": {
+          "type": "cds.String",
+          "length": 5,
+          "@sap.aggregation.role": "dimension",
+          "@sap.label": "Currency Code",
+          "@sap.quickinfo": "EPM: Currency Code",
+          "@sap.semantics": "currency-code",
+          "notNull": false
+        },
+        "GrossAmountInTransacCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Gross Amount",
+          "@sap.quickinfo": "EPM: Total Gross Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "NetAmountInTransactionCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Net Amount",
+          "@sap.quickinfo": "EPM: Total Net Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "TaxAmountInTransactionCurrency": {
+          "type": "cds.Decimal",
+          "precision": 16,
+          "scale": 3,
+          "@sap.aggregation.role": "measure",
+          "@sap.unit": "TransactionCurrency",
+          "@sap.label": "Tax Amount",
+          "@sap.quickinfo": "EPM: Total Tax Amount",
+          "@sap.filterable": "false",
+          "notNull": false
+        },
+        "SalesOrderLifeCycleStatus": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Lifecycle Status",
+          "@sap.quickinfo": "EPM: Sales Order Lifecycle Status",
+          "notNull": false
+        },
+        "SalesOrderBillingStatus": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Confirmation Status",
+          "@sap.quickinfo": "EPM: Sales Order Confirmation Status",
+          "notNull": false
+        },
+        "SalesOrderDeliveryStatus": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Ordering Status",
+          "@sap.quickinfo": "EPM: Sales Order Ordering Status",
+          "notNull": false
+        },
+        "SalesOrderOverallStatus": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Overall Status",
+          "@sap.quickinfo": "EPM: Sales Order Overall Status",
+          "notNull": false
+        },
+        "Opportunity": {
+          "type": "cds.String",
+          "length": 35,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Opportunity ID",
+          "@sap.quickinfo": "EPM: Opportunity ID for SoD IDoc processing",
+          "notNull": false
+        },
+        "SalesOrderPaymentMethod": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Payment Method",
+          "@sap.quickinfo": "EPM: Sales Order Payment Method",
+          "notNull": false
+        },
+        "SalesOrderPaymentTerms": {
+          "type": "cds.String",
+          "length": 1,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Payment Terms",
+          "@sap.quickinfo": "EPM: Sales Order Payment Terms",
+          "notNull": false
+        },
+        "BillToParty": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Bill-to Party",
+          "@sap.quickinfo": "EPM: Sales Order Bill-To Party",
+          "notNull": false
+        },
+        "BillToPartyRole": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Party Role",
+          "@sap.quickinfo": "EPM: Party Role",
+          "notNull": false
+        },
+        "ShipToParty": {
+          "type": "cds.String",
+          "length": 10,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Ship-to Party",
+          "@sap.quickinfo": "EPM: Sales Order Ship-To Party",
+          "notNull": false
+        },
+        "ShipToPartyRole": {
+          "type": "cds.String",
+          "length": 3,
+          "@sap.aggregation.role": "dimension",
+          "@sap.display.format": "UpperCase",
+          "@sap.label": "Party Role",
+          "@sap.quickinfo": "EPM: Party Role",
+          "notNull": false
+        },
+        "to_Item": {
+          "@cds.ambiguous": "missing on condition?",
+          "type": "cds.Association",
+          "target": "z001_srv_metadata.SEPM_I_SalesOrderItem_E",
+          "cardinality": {
+            "max": "*"
+          },
+          "keys": []
+        }
+      }
+    }
+  }
+}
